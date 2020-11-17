@@ -33,10 +33,7 @@ export default {
       ranking: [],
       categoryList: [],
       isCategory: false,
-      defaultWord: '',
-      // aid: '56467196'
-      aid: '2660357'
-      // aid: '69117716'
+      defaultWord: ''
     }
   },
   created () {
@@ -63,18 +60,14 @@ export default {
       }
     },
     async getRanking () {
-      let detail = await this.$get('/detail', {
-        aid: this.aid
+      this.$alert.showLoading({
+        title: '加载中...'
       })
       let ranking = await this.$get('/ranking')
       if (ranking.code === 0) {
-        detail.data.play = detail.data.stat.view // 播放量
-        detail.data.video_review = detail.data.stat.danmaku // 弹幕
-        detail.data.mid = detail.data.owner.mid
-        let newDetail = this.setList(ranking.data.list[0], detail.data)
-        ranking.data.list.unshift(newDetail)
         this.ranking = ranking.data.list
       }
+      this.$alert.hideLoading()
     },
     setList (video, detail) {
       let newDetail = {}
@@ -86,18 +79,26 @@ export default {
       return newDetail
     },
     async clickCategory (data) {
+      this.$alert.showLoading({
+        title: '加载中...'
+      })
       if (data) {
         let main = await this.getRegion(data.id)
-        let arr = []
-        for (let i = 0; i < data.ids.length; i++) {
-          arr.push(this.getRegion(data.ids[i]))
-        }
+        let arr = data.ids.reduce((total, cur, index) => {
+          total.push(this.getRegion(data.ids[index]))
+          return total
+        }, [])
         Promise.all(arr).then(res => {
           res.unshift(main)
           this.$set(this, 'categoryList', res)
           this.isCategory = true
+          this.$alert.hideLoading()
+        }).catch(err => {
+          console.log(err)
+          this.$alert.hideLoading()
         })
       } else {
+        this.$alert.hideLoading()
         this.isCategory = false
       }
     },

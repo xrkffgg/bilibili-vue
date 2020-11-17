@@ -28,11 +28,13 @@
       <span v-html="_dataTrans(detail.pubdate)"></span>
       <span>AV{{detail.aid}}</span>
     </div>
-    <div v-show="showTitle" class="forbidden">
-      <img src="../../../../common/img/forbidden.png"/>
-      <span>未经作者授权禁止转载</span>
-    </div>
-    <div class="desc" v-if="desc && showTitle">{{desc}}</div>
+    <transition-group name="intro-tag">
+      <div v-show="showTitle" class="forbidden" key="0">
+        <img src="../../../../common/img/forbidden.png"/>
+        <span>未经作者授权禁止转载</span>
+      </div>
+      <div class="desc" v-if="desc && showTitle" key="1">{{desc}}</div>
+    </transition-group>
     <div class="opera-box" v-if="statVideo">
       <div class="opera">
         <img src="../../../../common/img/icon_fav.png"/>
@@ -58,7 +60,8 @@
     <div class="tags-box" ref="tagsBox">
       <div :class="'tags ' + (showTag ? 'hide' : '')">
         <div class="tags-item" v-for="(item, index) in tags" :key="index">
-          <img v-if="index < 3" src="../../../../common/img/icon_tag.png" />
+          <!--<img v-if="index < 3" src="../../../../common/img/icon_tag.png" />-->
+          <i v-if="index < 3" class="iconfont icon-method-draw-image"></i>
           <span :class="index < 3 ? 'active' : ''">{{item.tag_name}}</span>
         </div>
       </div>
@@ -179,6 +182,8 @@ export default {
 <style scoped lang="scss">
   .detail-info{
     padding: .3rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   .author-info{
     display: flex;
@@ -312,13 +317,12 @@ export default {
         border-radius: .4rem;
         margin-right: .2rem;
         margin-bottom: .15rem;
-        img{
-          width: .25rem;
-          height: .25rem;
-          margin-right: .05rem;
+        .iconfont{
+          font-size: .25rem;
+          @include theme-main-color($theme-pink);
         }
         span.active{
-          color: $theme;
+          @include theme-main-color($theme-pink);
         }
       }
     }

@@ -3,18 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import VueLazyload from 'vue-lazyload'
-import {get, post} from './api/axios'
+import { get, post } from './api/axios'
 import './common/js/rem'
 import './common/font/iconfont.css'
+import alertModal from 'vue-alert-modal/vue-alert-modal'
 
 Vue.config.productionTip = false
 
-// Vue.use(VueLazyload)
 Vue.use(VueLazyload, {
   loading: require('./common/img/tv.png'),
   error: require('./common/img/tv.png')
 })
+Vue.use(alertModal)
 Vue.prototype.$get = get
 Vue.prototype.$post = post
 router.beforeEach((to, from, next) => {
@@ -36,6 +38,7 @@ router.beforeEach((to, from, next) => {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

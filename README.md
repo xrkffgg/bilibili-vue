@@ -18,8 +18,19 @@
 
 6. 评论
 
-7. 弹幕
+7. 弹幕（发送弹幕，常用语，自定义颜色，大小，历史弹幕）
 
+8. 一键换肤
+
+9. 自定义模态框组件loading、alert
+
+```
+import alertModal from './base/alertModal/alertModal'
+Vue.use(alertModal)
+
+this.$message.showLoading()
+this.$message.hideLoading()
+```
 弹幕效果现在全部内容是从右向左滚动的效果，等后续再实现高级效果
 
 项目启动
@@ -38,13 +49,18 @@ npm run dev
 
 部分效果图
 
-主页
-![](https://orangleli.github.io/imagesResources/主页.png)
+## 主页
+![](https://orangleli.github.io/imagesResources/index.png)
 
-搜索
+## 搜索
 ![](https://orangleli.github.io/imagesResources/搜索.png)
 
-视频
+## 视频
 ![](https://orangleli.github.io/imagesResources/详情.png)
+
+## 换肤
+
+主页header中点击调色板按钮进入换肤界面
+![](https://orangleli.github.io/imagesResources/theme-ex.png)
 
 ### 本项目只用于学习交流，请勿用于商业行为，如有问题，请联系1277947446@qq.com，感谢bilibili团队

@@ -17,9 +17,11 @@
     "jsonp": "^0.2.1",
     "sass-resources-loader": "^2.0.1",
     "vue": "^2.5.2",
+    "vue-alert-modal": "^1.0.1",
     "vue-awesome-swiper": "^3.1.3",
     "vue-lazyload": "^1.3.3",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -35,6 +37,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "chalk": "^2.0.1",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.15.0",
@@ -68,9 +71,9 @@
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "webpack-theme-color-replacer": "^1.3.4"
   },
   "engines": {
     "node": ">= 6.0.0",
